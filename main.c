@@ -24,3 +24,18 @@ void setup() {
     Serial.begin(9600);
     randomSeed(analogRead(0)); 
 }
+
+void loop(){
+    lcd_1.scrollDisplayLeft();
+    delay(200);
+
+    for (int i = 0; i < 10; i++){
+        sequencia[i] = random(2); //0 verde, 1 vermelho
+    }
+
+    //quando botão inicia for precionado vai chamar as funções
+    if(digitalRead(botaoInicia) == HIGH){
+
+    }
+}
+
