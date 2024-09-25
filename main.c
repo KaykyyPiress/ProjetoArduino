@@ -68,9 +68,7 @@ bool respostaJogador(){
             }
 
             if (digitalRead(botaoVerde) == HIGH){
-                digitalWrite(ledVerde, HIGH);
-                delay(500);
-                digitalWrite(ledVerde, LOW);
+                acenderledVerde();
 
                 if(sequencia[i] == 1){
                     respostaCorreta = true;
@@ -79,9 +77,7 @@ bool respostaJogador(){
                 }
             }
             else if(digitalRead(botaovermelho) == HIGH){
-                digitalWrite(ledVermelho, HIGH);
-                delay(500);
-                digitalWrite(ledVermelho, LOW);
+                acenderledVermelho();
 
                 if(sequencia[i] == 0){
                     respostaCorreta = true;
@@ -102,13 +98,13 @@ void verificarResultado(){
 
     if(respostaJogador()){
         lcd_1.clear();
-        lcd_1.print("Acertou!")
-        tone(buzzer, 1400, 200); 
+        lcd_1.print("Acertou!");
+        somVitoria(); 
     }
     else{
         lcd_1.clear();
         lcd_1.print("Errou :(");
-         tone(buzzer, 300, 300);
+        somDerrota();
     } 
 }
 
@@ -148,6 +144,18 @@ void somDerrota(){
     tone(buzzer, 300, 300);
     delay(350);             
     noTone(buzzer);   
+}
+
+void acenderledVerde(){
+    digitalWrite(ledVerde, HIGH);
+    delay(500);
+    digitalWrite(ledVerde, LOW);
+}
+
+void acenderledVermelho(){
+    digitalWrite(ledVermelho, HIGH);
+    delay(500);
+    digitalWrite(ledVermelho, LOW);
 }
 
 void loop(){
