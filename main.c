@@ -59,7 +59,8 @@ bool respostaJogador(){
         bool respostaCorreta = false;
 
         lcd_1.clear();
-        lcd_1.print("Acertos: %d", i);
+        lcd_1.print("Acertos: ");
+        lcd_1.print(i);
 
         while(!respostaCorreta){
             if (digitalRead(botaoInicia) == HIGH){
