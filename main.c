@@ -42,13 +42,12 @@ void mostrarSequencia() {
         lcd_1.print("Memorize os leds");
 
         if (sequencia[i] == 0) {
-            digitalWrite(ledVermelho, HIGH);
-            delay(500);
-            digitalWrite(ledVermelho, LOW);
+            acenderledVermelho();
+            Serial.println("Vermelho")
         } else if (sequencia[i] == 1) {
-            digitalWrite(ledVerde, HIGH);
-            delay(500);
-            digitalWrite(ledVerde, LOW);
+            acenderledVerde();
+            Serial.println("Verde")
+
         }
         delay(300);
     }
