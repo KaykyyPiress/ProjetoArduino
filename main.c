@@ -29,13 +29,39 @@ void loop(){
     lcd_1.scrollDisplayLeft();
     delay(200);
 
-    for (int i = 0; i < 10; i++){
-        sequencia[i] = random(2); //0 verde, 1 vermelho
-    }
 
     //quando botão inicia for precionado vai chamar as funções
     if(digitalRead(botaoInicia) == HIGH){
-
+        mostrarSequencia();
     }
 }
+
+void gerarSequencia() {
+    for (int i = 0; i < 3; i++) {
+        sequencia[i] = random(2); // 0  vermelho, 1  verde
+    }
+}
+
+void mostrarSequencia(){
+    for(int i = 0; i < 3; i++){
+        if(digitalRead(botaoInicia) = HIGH){
+            return;
+        }
+        lcd_1.clear();
+        lcd_1.print("Memorize os leds");
+
+        if(sequencia[i] == 0){
+            digitalWrite(ledVermelho, HIGH);]
+            delay(500);
+            digitalWrite(ledVermelho, LOW);
+        }
+        else if (sequencia[i] == 1){
+            digitalWrite(ledVerde, HIGH);]
+            delay(500);
+            digitalWrite(ledVerde, LOW);
+        }
+        delay(300);
+    }
+}
+
 
