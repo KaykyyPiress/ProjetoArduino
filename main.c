@@ -77,8 +77,21 @@ bool respostaJogador(){
                     return false;
                 }
             }
-        } 
+            else if(digitalRead(botaovermelho) == HIGH){
+                digitalWrite(ledVermelho, HIGH);
+                delay(500);
+                digitalWrite(ledVermelho, LOW);
+
+                if(sequencia[i] == 0){
+                    respostaCorreta = true;
+                } else{
+                    return false;
+                }
+            }
+        }
+        delay(300); 
     }
+    return true; 
 }
 
 
