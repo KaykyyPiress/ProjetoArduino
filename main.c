@@ -13,7 +13,8 @@ LiquidCrystal lcd_1(12, 11, 7, 6, 5, 4);
 
 void setup() {
     lcd_1.begin(16, 2); 
-    lcd_1.print("  Aperte o botao para iniciar");
+    lcd_1.setCursor(2, 0); 
+    lcd_1.print("Aperte o botao para iniciar");
     pinMode(ledVermelho, OUTPUT);
     pinMode(ledVerde, OUTPUT);
     pinMode(botaoVerde, INPUT);
@@ -25,38 +26,27 @@ void setup() {
     randomSeed(analogRead(0)); 
 }
 
-void loop(){
-    lcd_1.scrollDisplayLeft();
-    delay(200);
-
-
-    //quando botão inicia for precionado vai chamar as funções
-    if(digitalRead(botaoInicia) == HIGH){
-        mostrarSequencia();
-    }
-}
 
 void gerarSequencia() {
     for (int i = 0; i < 3; i++) {
-        sequencia[i] = random(2); // 0  vermelho, 1  verde
+        sequencia[i] = random(2); // 0 para vermelho, 1 para verde
     }
 }
 
-void mostrarSequencia(){
-    for(int i = 0; i < 3; i++){
-        if(digitalRead(botaoInicia) = HIGH){
+void mostrarSequencia() {
+    for (int i = 0; i < 3; i++) {
+        if (digitalRead(botaoInicia) == HIGH){
             return;
         }
-        lcd_1.clear();
+        lcd_1.clear();  
         lcd_1.print("Memorize os leds");
 
-        if(sequencia[i] == 0){
-            digitalWrite(ledVermelho, HIGH);]
+        if (sequencia[i] == 0) {
+            digitalWrite(ledVermelho, HIGH);
             delay(500);
             digitalWrite(ledVermelho, LOW);
-        }
-        else if (sequencia[i] == 1){
-            digitalWrite(ledVerde, HIGH);]
+        } else if (sequencia[i] == 1) {
+            digitalWrite(ledVerde, HIGH);
             delay(500);
             digitalWrite(ledVerde, LOW);
         }
@@ -64,4 +54,12 @@ void mostrarSequencia(){
     }
 }
 
+void loop(){
+    lcd_1.scrollDisplayLeft();
+    delay(200);  
+    
+    if(digitalRead(botaoInicia) == HIGH){
+  	    mostrarSequencia();
+  }
+}
 
