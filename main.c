@@ -95,6 +95,23 @@ bool respostaJogador(){
     return true; 
 }
 
+void verificarResultado(){
+    if(digitalRead(botaoInicia) == HIGH){
+        return;
+    }
+
+    if(respostaJogador()){
+        lcd_1.clear();
+        lcd_1.print("Acertou!")
+        tone(buzzer, 1400, 200); 
+    }
+    else{
+        lcd_1.clear();
+        lcd_1.print("Errou :(");
+         tone(buzzer, 300, 300);
+    } 
+}
+
 
 
 
