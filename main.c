@@ -55,9 +55,7 @@ void mostrarSequencia() {
 }
 
 void loop(){
-    lcd_1.scrollDisplayLeft();
-    delay(200);  
-    
+
     if(digitalRead(botaoInicia) == HIGH){
   	    mostrarSequencia();
   }
