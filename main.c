@@ -130,7 +130,25 @@ void jogoMemoria(){
     lcd_1.print("para iniciar");
 }
 
+void somVitoria(){
+    tone(buzzer, 1000, 200); 
+    delay(250);             
+    tone(buzzer, 1200, 200); 
+    delay(250);             
+    tone(buzzer, 1400, 200); 
+    delay(250);             
+    noTone(buzzer); 
+}
 
+void somDerrota(){
+    tone(buzzer, 500, 300); 
+    delay(350);             
+    tone(buzzer, 400, 300); 
+    delay(350);             
+    tone(buzzer, 300, 300);
+    delay(350);             
+    noTone(buzzer);   
+}
 
 void loop(){
 
