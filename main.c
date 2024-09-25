@@ -54,6 +54,35 @@ void mostrarSequencia() {
     }
 }
 
+bool respostaJogador(){
+    for (int i = 0; i < 3; i++){
+        bool respostaCorreta = false;
+
+        lcd_1.clear();
+        lcd_1.print("Acertos: %d", i);
+
+        while(!respostaCorreta){
+            if (digitalRead(botaoInicia) == HIGH){
+                return false;
+            }
+
+            if (digitalRead(botaoVerde) == HIGH){
+                digitalWrite(ledVerde, HIGH);
+                delay(500);
+                digitalWrite(ledVerde, LOW);
+
+                if(sequencia[i] == 1){
+                    respostaCorreta = true;
+                } else{
+                    return false;
+                }
+            }
+        } 
+    }
+}
+
+
+
 void loop(){
 
     if(digitalRead(botaoInicia) == HIGH){
