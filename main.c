@@ -11,6 +11,15 @@ int buzzer = 13;
 
 LiquidCrystal lcd_1(12, 11, 7, 6, 5, 4);
 
+const String perguntas[6] = {
+  "Java e legal?", 
+  "Python e legal?",
+  "Banana e amarela?",
+  "A placa e Arduino?",
+  "Foi facil fazer?",
+};
+const bool respostas[5] = {false, true, true, true, false};
+
 void setup() {
     lcd_1.begin(16, 2); 
     lcd_1.setCursor(2, 0); 
