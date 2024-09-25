@@ -96,6 +96,8 @@ bool respostaJogador(){
 
 
 
+
+
 void loop(){
 
     if(digitalRead(botaoInicia) == HIGH){
