@@ -112,14 +112,30 @@ void verificarResultado(){
     } 
 }
 
-
+void jogoMemoria(){
+    lcd_1.clear();
+    lcd_1.print("Gerando sequencia...");
+    gerarSequencia();
+    delay(1000);
+    lcd_1.clear();
+    lcd_1.print("Mostrando sequencia");
+    mostrarSequencia();
+    lcd_1.clear();
+    lcd_1.print("Sua vez...");
+    verificarResultado();
+    delay(2000);
+    lcd_1.clear();
+    lcd_1.print("Aperte o botao");
+    lcd_1.setCursor(0, 1);
+    lcd_1.print("para iniciar");
+}
 
 
 
 void loop(){
 
     if(digitalRead(botaoInicia) == HIGH){
-  	    mostrarSequencia();
+  	   jogoMemoria();
   }
 }
 
