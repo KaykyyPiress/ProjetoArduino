@@ -52,10 +52,10 @@ void mostrarSequencia() {
 
         if (sequencia[i] == 0) {
             acenderledVermelho();
-            Serial.println("Vermelho")
+            Serial.println("Vermelho");
         } else if (sequencia[i] == 1) {
             acenderledVerde();
-            Serial.println("Verde")
+            Serial.println("Verde");
 
         }
         delay(300);
