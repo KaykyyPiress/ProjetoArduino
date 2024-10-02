@@ -1,95 +1,164 @@
 #include <LiquidCrystal.h>
 
+
+///////////////////////////////////////////////////////////////////////////
+//variaveis do arduino
 char buffer[50];
 int sequencia[10];
 int botaoVerde = 3; // sim
 int botaovermelho = 2; // não
 int botaoInicia = 8; 
-int ledVermelho = 10;
-int ledVerde = 9;
+int ledVermelh = 10;
+int ledVerd = 9;
 int buzzer = 13;
+///////////////////////////////////////////////////////////////////////////
 
+
+///////////////////////////////////////////////////////////////////////////
 LiquidCrystal lcd_1(12, 11, 7, 6, 5, 4);
+///////////////////////////////////////////////////////////////////////////
 
-const String perguntas[6] = {
-  "Java e legal?", 
-  "Python e legal?",
+
+///////////////////////////////////////////////////////////////////////////
+//perguntas do jogo
+String perguntas[] = {
+  "o ceu e azul?", 
+  "bolacha?",
   "Banana e amarela?",
-  "A placa e Arduino?",
+  "Progamamos em Pyton?",
   "Foi facil fazer?",
+  "Java é bom?",
+  "Mandou bem?",
+  "Gol?",
 };
-const bool respostas[5] = {false, true, true, true, false};
+//respostas do jogo
+const bool respostas[8] = {true, true, true, false, false,true,false,false};
+///////////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////////
 void setup() {
+
     lcd_1.begin(16, 2); 
-    lcd_1.setCursor(2, 0); 
-    lcd_1.print("Aperte o botao para iniciar");
-    pinMode(ledVermelho, OUTPUT);
-    pinMode(ledVerde, OUTPUT);
+    lcd_1.setCursor(0, 0); 
+    lcd_1.print("Aperte o botao ");
+    lcd_1.setCursor(0,1);
+    lcd_1.print("para iniciar");
+
+    pinMode(ledVermelh, OUTPUT);
+    pinMode(ledVerd, OUTPUT);
     pinMode(botaoVerde, INPUT);
-    pinMode(2, INPUT);
+    pinMode(botaovermelho, INPUT);
     pinMode(botaoInicia, INPUT);
     pinMode(buzzer, OUTPUT);
     
     Serial.begin(9600);
     randomSeed(analogRead(0)); 
 }
+///////////////////////////////////////////////////////////////////////////
 
 
-void gerarSequencia() {
+
+///////////////////////////////////////////////////////////////////////////
+//sequencia gerada nesta função
+void sequenciaJogo() {
+    //gera numeros aleatorios entre 0 e 1
     for (int i = 0; i < 3; i++) {
         sequencia[i] = random(2); // 0 para vermelho, 1 para verde
     }
 }
+///////////////////////////////////////////////////////////////////////////
 
-void mostrarSequencia() {
+
+///////////////////////////////////////////////////////////////////////////
+//mostra a sequencia no visor do lcd
+void mostraSequencia() {
+
     for (int i = 0; i < 3; i++) {
+        //verifica se o botão de inicio foi acionado
         if (digitalRead(botaoInicia) == HIGH){
             return;
         }
+        //limpa o lcd
         lcd_1.clear();  
+        //printa no lcd a mensagem
         lcd_1.print("Memorize os leds");
 
+        //printa no serial a sequencia para teste e ascende os leds para memorizar
         if (sequencia[i] == 0) {
-            acenderledVermelho();
+            ledVermelho();
             Serial.println("Vermelho");
-        } else if (sequencia[i] == 1) {
-            acenderledVerde();
+        } 
+        
+        else if (sequencia[i] == 1) {
+            ledVerde();
             Serial.println("Verde");
-
         }
         delay(300);
     }
 }
+///////////////////////////////////////////////////////////////////////////
 
-bool respostaJogador(){
+
+//////////////////////////////////////////////////////////////////////////////
+// Função para rolar texto no LCD
+void scrollTexto(String texto, int delayScroll) {
+    int tamanhoTexto = texto.length();
+
+    // Se o texto é menor ou igual a 16 caracteres, não precisa rolar
+    if (tamanhoTexto <= 16) {
+        lcd_1.print(texto);
+    } else {
+        // Faz o texto rolar para a esquerda
+        for (int i = 0; i < tamanhoTexto - 15; i++) {
+            lcd_1.clear();
+            lcd_1.setCursor(0, 0); // Início da linha superior
+            lcd_1.print(texto.substring(i, i + 16)); // Mostra 16 caracteres por vez
+            delay(delayScroll); // Define a velocidade do scroll
+        }
+    }
+}
+///////////////////////////////////////////////////////////////////////////
+
+
+
+///////////////////////////////////////////////////////////////////////////
+//verifica a respota do jogador e compara com a certa
+bool respJogador(){
+
     for (int i = 0; i < 3; i++){
-        bool respostaCorreta = false;
 
+        bool respCorreta = false;
+
+        //limpa o lcd
         lcd_1.clear();
+        //printa no lcd a mensagem e atualiza os acertos conforme estejam certos
         lcd_1.print("Acertos: ");
         lcd_1.print(i);
 
-        while(!respostaCorreta){
+        //verifica a resposta ao apertar cada botão
+        while(!respCorreta){
+
+            //verifica o botão de inicio
             if (digitalRead(botaoInicia) == HIGH){
                 return false;
             }
 
+            //verifica o botão de led verde
             if (digitalRead(botaoVerde) == HIGH){
-                acenderledVerde();
-
+                ledVerde();
                 if(sequencia[i] == 1){
-                    respostaCorreta = true;
-                } else{
+                    respCorreta = true;
+                } else {
                     return false;
                 }
             }
-            else if(digitalRead(botaovermelho) == HIGH){
-                acenderledVermelho();
 
+            //verifica o botão de led vermelho
+            else if(digitalRead(botaovermelho) == HIGH){
+                ledVermelho();
                 if(sequencia[i] == 0){
-                    respostaCorreta = true;
-                } else{
+                    respCorreta = true;
+                } else {
                     return false;
                 }
             }
@@ -98,43 +167,71 @@ bool respostaJogador(){
     }
     return true; 
 }
+//fim da função de comparação de respostas
+///////////////////////////////////////////////////////////////////////////
 
-void verificarResultado(){
-    if(digitalRead(botaoInicia) == HIGH){
-        return;
-    }
 
-    if(respostaJogador()){
+///////////////////////////////////////////////////////////////////////////
+//Função para verificar o resultado do jogos
+void resultado(){
+
+    //verifica se a resposta do jogador esta correta
+    if(respJogador()){
         lcd_1.clear();
         lcd_1.print("Acertou!");
-        somVitoria(); 
+        //emite som de vitoria
+        somV(); 
+        //executa função das perguntas caso acerte as sequencias dos leds
+        jogoDasPerguntas();
     }
+
+    //caso erre a resposta imprime mensagem que errou
     else{
         lcd_1.clear();
         lcd_1.print("Errou :(");
-        somDerrota();
+        //emite som de derrota
+        somD();
     } 
 }
+//fim da função de verificar a resposta do jogo
+///////////////////////////////////////////////////////////////////////////
 
-void jogoMemoria(){
+
+
+///////////////////////////////////////////////////////////////////////////
+//função do jogo da memoria
+void jgMemoria(){
+
+    String stringGerando  = "Gerando sequencia...";
+    //limpa o lcd e mostra a mensagem 
     lcd_1.clear();
-    lcd_1.print("Gerando sequencia...");
-    gerarSequencia();
+    scrollTexto(stringGerando, 200);
+    //executa a função para gerar a sequencia
+    sequenciaJogo();
     delay(1000);
-    lcd_1.clear();
-    lcd_1.print("Mostrando sequencia");
-    mostrarSequencia();
-    lcd_1.clear();
-    lcd_1.print("Sua vez...");
-    verificarResultado();
+    
+    //executa a função para mostrar a sequencia
+    mostraSequencia();
+    
+    //executa a função que verifica o resultado do jogador 
+    resultado();
     delay(2000);
+
+    //apresenta mensagem para iniciar novamente o jogo
     lcd_1.clear();
     lcd_1.print("Aperte o botao");
     lcd_1.setCursor(0, 1);
     lcd_1.print("para iniciar");
 }
+//Função do jogo da memoria
+///////////////////////////////////////////////////////////////////////////
 
-void somVitoria(){
+
+
+
+/////////////////////////////////////////////////////////////////////////
+//sons e leds das perguntas e respostas
+void somV(){
     tone(buzzer, 1000, 200); 
     delay(250);             
     tone(buzzer, 1200, 200); 
@@ -144,7 +241,7 @@ void somVitoria(){
     noTone(buzzer); 
 }
 
-void somDerrota(){
+void somD(){
     tone(buzzer, 500, 300); 
     delay(350);             
     tone(buzzer, 400, 300); 
@@ -154,22 +251,17 @@ void somDerrota(){
     noTone(buzzer);   
 }
 
-void acenderledVerde(){
-    digitalWrite(ledVerde, HIGH);
+void ledVerde(){
+    digitalWrite(ledVerd, HIGH);
     delay(500);
-    digitalWrite(ledVerde, LOW);
+    digitalWrite(ledVerd, LOW);
 }
 
-void acenderledVermelho(){
-    digitalWrite(ledVermelho, HIGH);
+void ledVermelho(){
+    digitalWrite(ledVermelh, HIGH);
     delay(500);
-    digitalWrite(ledVermelho, LOW);
+    digitalWrite(ledVermelh, LOW);
 }
-
-void loop(){
-
-    if(digitalRead(botaoInicia) == HIGH){
-  	   jogoMemoria();
-  }
-}
+// fim das funções de sons e leds 
+//////////////////////////////////////////////////////////////////////////////
 
