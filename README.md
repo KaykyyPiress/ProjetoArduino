@@ -73,6 +73,8 @@
       Caso o usuário acerto a pergunta final, ele mostra que o usuário venceu no LCD
       ![imagem_voce_venceu](https://github.com/user-attachments/assets/99d89366-48cd-4a1b-b284-6a589726cd9f)
 
+      No monitor serial aparece também a sequencia dos leds e as perguntas
+      ![imagem_monitorSerial](https://github.com/user-attachments/assets/e6080040-7144-4198-a6d3-5c5da0630a39)
 
     
 
