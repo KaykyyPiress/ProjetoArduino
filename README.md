@@ -6,9 +6,9 @@
 
   Instruções para uso do programa:
 
-    1- Monte o circuito conforme a imagem abaixo, para melhor funcionalidade do programa.
+   ### 1- Monte o circuito conforme a imagem abaixo, para melhor funcionalidade do programa.
     
-      ![Imagem do circuito do programa](https://github.com/user-attachments/assets/a22987d6-fb36-41fb-93b4-ca88be058b6a)
+   ### ![Imagem do circuito do programa](https://github.com/user-attachments/assets/a22987d6-fb36-41fb-93b4-ca88be058b6a)
 
     2- Copie o codigo ou baixe o arquivo main.c que esta no repositorio.
 
