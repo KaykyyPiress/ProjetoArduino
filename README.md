@@ -1,6 +1,6 @@
 # Projeto Arduino
 
-  O projeto consiste em um jogo de memorização e de perguntas.
+##  O projeto consiste em um jogo de memorização e de perguntas.
 
   Este programa foi desenvolvido em C++ e para ser usado com Arduino. 
 
@@ -15,7 +15,7 @@
     3- Abra o Arduino e execute o codigo do programa para iniciar o jogo.
 
 
-Como é o jogo e como jogar o mesmo:
+## Como é o jogo e como jogar:
 
      Quando se inicia o jogo, ele exibe uma mensagem no LCD uma mensagem para pressionar o botão de inicio para começar.
       (Botão de inicio é o isolado do lado esquerdo)
@@ -27,7 +27,7 @@ Como é o jogo e como jogar o mesmo:
 
       (Botão para o led verde esta no lado direito, e botão do led vermelho esta do lado direito, no centro da segunda protoboard).
       
-     A cada acerto a quantidade no LCD irá aumentar.
+     A cada acerto a quantidade de acertos no LCD irá aumentar.
 
       ![Imagem do visor com a quantidade de acertos](https://github.com/user-attachments/assets/da743b77-3a69-4398-9019-d97857b031a7)
 
@@ -52,6 +52,29 @@ Como é o jogo e como jogar o mesmo:
       ![Imagem do tempo no visor do LCD](https://github.com/user-attachments/assets/798d0dfa-c4f9-426d-8690-5761c99aa1a9)
       
       ![Pulou pergunta](https://github.com/user-attachments/assets/67003a53-1d15-4d36-9d42-7a837aa6ff8a)
+      
+      Após iniciado o jogo de perguntas, uma pergunta vai aparecer no LCD
+      ![imagem_com_pergunta_no_lcd](https://github.com/user-attachments/assets/8e772cea-3800-481a-8e36-4bd8e79c88db)
+
+      O jogador pode reponder sim ou não utilizando os botões dos leds
+      ![botoes_sim_e_nao](https://github.com/user-attachments/assets/310a6ae0-34cf-4714-816a-10801e66620d)
+
+      Depois de selecionar se sim ou não, no LCD irá aparecer um "*" na opção selecionada juntamente com o tempo restante
+      ![imagem_com_sim_selecionado](https://github.com/user-attachments/assets/f1763273-c206-4e45-aad2-805ac1d700d1)
+
+      ![imagem_com_nao_selecionado](https://github.com/user-attachments/assets/1707f5d5-2551-47a3-bf76-90ede00dc345)
+
+      Após o tempo acabar, irá aparecer no LCD se acertou ou errou a pergunta
+      ![imagem_acertou](https://github.com/user-attachments/assets/68fa1586-0760-4a79-a47d-ff5c816fd115)
+
+      Assim que acertar todas as cinco perguntas, o usuário irá para a pergunta final
+      ![imagem_pergunta_final](https://github.com/user-attachments/assets/d6440070-aa36-4a42-8db7-93e4a3543d6c)
+
+      Caso o usuário acerto a pergunta final, ele mostra que o usuário venceu no LCD
+      ![imagem_voce_venceu](https://github.com/user-attachments/assets/99d89366-48cd-4a1b-b284-6a589726cd9f)
+
+
+    
 
       
 
