@@ -558,8 +558,7 @@
 
       
 ## Dificuldades:
-  Tivemos uma certa dificuldade em relação a parte das perguntas, fazer a interação das respostas com a pergunta.
-    
+  Tivemos uma certa dificuldade em relação a parte das perguntas, fazer a interação das respostas com as perguntas. Colocar temporizador, e a montagem do arduino.  
 
       
 
