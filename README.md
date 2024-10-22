@@ -31,11 +31,9 @@
 
    ###   ![Imagem do visor com a quantidade de acertos](https://github.com/user-attachments/assets/da743b77-3a69-4398-9019-d97857b031a7)
 
-  ###   Caso erre a sequência o jogo irá parar e exibirá a mensagem para iniciar novamente. Caso acerte a sequência, o
-  ###  jogador ira passar para a proxima fase que é a de perguntas. 
+  ###   Caso erre a sequência o jogo irá parar e exibirá a mensagem para iniciar novamente. Caso acerte a sequência, o jogador ira passar para a proxima fase que é a de perguntas. 
     
-  ###   Está fase é composta de 5 perguntas, onde o jogador não poderá errar nenhuma resposta. Caso erre alguma
-  ###  o jogo sera reiniciado.
+  ###   Está fase é composta de 5 perguntas, onde o jogador não poderá errar nenhuma resposta. Caso erre alguma o jogo sera reiniciado.
 
    ###   ![Imagem da pergunta no visor LCD](https://github.com/user-attachments/assets/6c49bb75-2db6-468e-b90a-36572ec9e785)
 
@@ -46,8 +44,7 @@
    ###  Se a resposta estiver incorreta, irá emitir um som e a mensagem no visor LCD
    ###   ![Errou a pergunta](https://github.com/user-attachments/assets/e3b83236-1293-4c1e-8f86-ee02f27e5319)
 
-   ###  O jogador terá direito de pular uma unica pergunta (Esgotar o tempo e não responder), que a mesma será exibida
-   ### ao final das demais perguntas.
+   ###  O jogador terá direito de pular uma unica pergunta (Esgotar o tempo e não responder), que a mesma será exibida ao final das demais perguntas.
 
    ###   ![Imagem do tempo no visor do LCD](https://github.com/user-attachments/assets/798d0dfa-c4f9-426d-8690-5761c99aa1a9)
       
